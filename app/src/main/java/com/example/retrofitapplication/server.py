@@ -7,7 +7,7 @@ app=Flask(__name__)
 api_key="OPENAI_API_KEY"
 
 
-openai.api_key="sk-proj-SaTJJK68Q4NuTwrzI89GT3BlbkFJLdmjJzUQGOYxnuPzE1c2"
+openai.api_key="YOUR_API_KEY" #here give your own openaiapikey
 
 @app.route('/api/hello/<question>',methods=['GET'])
 def hello(question):
