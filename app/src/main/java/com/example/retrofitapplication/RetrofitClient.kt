@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    val BASE_URL = "http://chatgptvmm.koreacentral.cloudapp.azure.com"  //url for the other to run ()
+    val BASE_URL = "http://gpt.centralindia.cloudapp.azure.com"  //url for the other to run ()
     fun getInstance(): Retrofit {
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL) //j site a req maarbe
