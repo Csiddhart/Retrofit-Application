@@ -24,20 +24,24 @@ class MainActivity : AppCompatActivity() {
 
         binding.addButton.setOnClickListener {
             val input=binding.inputEdit.text.toString() //a string representation of object will be passed overhere
-            val retrofit = RetrofitClient.getInstance() //so retrofit is activated for making any HTTP request
-            val apiInterface = retrofit.create(ChatgptInterface::class.java) //allow the retrofit to make http request using the defined endpoints in the Interface
-
-            apiInterface.getResponse(input).enqueue(object: Callback<JsonPrimitive> {//here enqueue is used to make call to internet and then interface is created
-                override fun onResponse(call: Call<JsonPrimitive>, response: Response<JsonPrimitive>) {
-                    binding.outputText.text=response.body().toString()//we will get the output here
-                }
-
-                override fun onFailure(call: Call<JsonPrimitive>, t: Throwable) {
-                    binding.outputText.text=t.toString() //we will get the error here
-                }
-
-            })
+            sendToChatGpt(input)
         }
 
+    }
+
+    fun sendToChatGpt(input:String){
+        val retrofit = RetrofitClient.getInstance() //so retrofit is activated for making any HTTP request
+        val apiInterface = retrofit.create(ChatgptInterface::class.java) //allow the retrofit to make http request using the defined endpoints in the Interface
+
+        apiInterface.getResponse(input).enqueue(object: Callback<JsonPrimitive> {//here enqueue is used to make call to internet and then interface is created
+        override fun onResponse(call: Call<JsonPrimitive>, response: Response<JsonPrimitive>) {
+            binding.outputText.text=response.body().toString()//we will get the output here
+        }
+
+            override fun onFailure(call: Call<JsonPrimitive>, t: Throwable) {
+                binding.outputText.text=t.toString() //we will get the error here
+            }
+
+        })
     }
 }
